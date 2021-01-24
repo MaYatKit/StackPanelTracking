@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="item"
+            type="com.framecad.plum.data.model.ScanItem" />
+
+        <variable
+            name="viewDetailClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="updateDetailClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="backClickListener"
+            type="android.view.View.OnClickListener" />
+
+
+        <variable
+            name="vm"
+            type="com.framecad.plum.viewmodel.qrcode.QrCodeViewOptionViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/app_bar_layout"
+            layout="@layout/common_app_bar_layout"
+            app:backClickListener="@{backClickListener}"
+            app:title=""/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/view_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="35dp"
+            android:text="@{vm.viewItem.name}"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+            app:layout_constraintBottom_toTopOf="@+id/view_detail_button"
+            tools:text="Panel 123"/>
+
+        <TextView
+            android:id="@+id/view_detail_button"
+            android:layout_width="330dp"
+            android:layout_height="55dp"
+            android:text="@string/qr_view_detail"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:background="@drawable/ic_view_detail_button_background"
+            android:onClick="@{viewDetailClickListener}"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_name"
+            app:layout_constraintBottom_toTopOf="@+id/update_status_button"
+            />
+
+        <TextView
+            android:id="@+id/update_status_button"
+            android:layout_width="330dp"
+            android:layout_height="55dp"
+            android:text="@string/qr_update_status"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:background="@drawable/ic_view_detail_button_background"
+            android:onClick="@{updateDetailClickListener}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_detail_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+

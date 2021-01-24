@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/navQrcode"
+        android:enabled="true"
+        android:icon="@drawable/ic_qrcode_bottom"
+        android:title="@string/qr_page_bottom_tap" />
+    <item android:id="@+id/navProjects"
+        android:enabled="true"
+        android:icon="@drawable/ic_projects_bottom"
+        android:title="@string/projects_bottom_tap" />
+</menu>

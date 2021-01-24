@@ -1,0 +1,28 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- Project list page-->
+    <dimen name="projects_list_item_margin_left_top">17dp</dimen>
+    <dimen name="projects_list_item">17dp</dimen>
+    <dimen name="projects_list_item_progressbar_stroke">6dp</dimen>
+
+
+    <!-- Project deteil page-->
+    <dimen name="projects_detail_item_padding_left_top">27dp</dimen>
+    <dimen name="projects_detail_item_padding_bottom">10dp</dimen>
+    <dimen name="projects_detail_item">17dp</dimen>
+    <dimen name="projects_detail_item_progressbar_stroke">6dp</dimen>
+    <dimen name="projects_detail_title">17sp</dimen>
+
+
+    <!-- View update page-->
+    <dimen name="view_update_item_margin_left_top">24dp</dimen>
+
+
+    <!-- Login page-->
+    <dimen name="login_page_left_margin">22dp</dimen>
+
+
+</resources>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.framecad.plum.R" />
+        <import type="java.util.List" />
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="projectStatus"
+            type="com.framecad.plum.adapters.ProjectStatus" />
+
+        <variable name="properties" type="List&lt;com.framecad.plum.data.model.PropertyItem>"/>
+
+        <variable
+            name="subItem"
+            type="com.framecad.plum.data.model.SubListItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="@{onClickListener}"
+        android:paddingStart="@dimen/projects_detail_item_padding_left_top"
+        android:paddingEnd="@dimen/projects_detail_item_padding_left_top">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:text="@{subItem.name}"
+            android:layout_marginTop="13dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/measure_left"
+            tools:text="L1"
+            tools:textColor="@color/black" />
+
+        <View
+            android:id="@+id/item_status_icon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="7dp"
+            app:backgroundResource="@{projectStatus.chooseIcon(subItem.status)}"
+            app:layout_constraintTop_toTopOf="@+id/item_content"
+            app:layout_constraintBottom_toBottomOf="@+id/item_content"
+            app:layout_constraintRight_toLeftOf="@+id/item_content"
+            tools:background="@drawable/ic_projects_status_icon_inventory"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:text="@{subItem.status}"
+            android:layout_marginTop="13dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Assembled"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <LinearLayout
+            android:id="@+id/measure_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/project_detail_sublist_gray"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintRight_toLeftOf="@+id/measure_right"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_title"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/project_detail_text_gray"
+                android:text="@{properties[0].name}"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:ellipsize="end"
+                tools:text="Lineal Feet (or Metres)"
+                tools:textColor="@color/project_detail_text_gray"
+                >
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{properties[0].value}"
+                tools:text="1000 ft"
+                >
+            </androidx.appcompat.widget.AppCompatTextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/measure_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/project_detail_sublist_gray"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintLeft_toRightOf="@id/measure_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_title"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/project_detail_text_gray"
+                android:text="@{properties[1].name}"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                tools:text="Weight"
+                tools:textColor="@color/project_detail_text_gray"
+                >
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content_right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{properties[1].value}"
+                tools:text="1200 ib"
+                >
+            </androidx.appcompat.widget.AppCompatTextView>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/measure_left"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_list_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
+    
+

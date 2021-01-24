@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/qrcode_fragment">
+
+    <fragment
+        android:id="@+id/qrcode_fragment"
+        android:name="com.framecad.plum.view.qrcode.QrCodeFragment"
+        tools:layout="@layout/fragment_qrcode">
+
+        <action
+                android:id="@+id/action_qrcode_fragment_to_projects_fragment"
+                app:destination="@+id/projects_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/projects_fragment"
+        android:name="com.framecad.plum.view.project.ProjectsFragment"
+        tools:layout="@layout/fragment_projects">
+
+        <action
+            android:id="@+id/action_projects_fragment_to_qrcode_fragment"
+            app:destination="@id/qrcode_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="userId"
+            app:nullable="false"
+            app:argType="integer" />
+    </fragment>
+
+
+
+</navigation>

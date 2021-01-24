@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <import type="com.framecad.plum.R" />
+        <import type="android.view.View" />
+        <variable
+            name="subListData"
+            type="com.framecad.plum.data.model.SubList" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{subListData.subItems.size()>0? View.VISIBLE: View.GONE}">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/projects_detail_item_padding_left_top"
+            android:paddingEnd="@dimen/projects_detail_item_padding_left_top">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:textSize="13sp"
+                android:layout_gravity="center_vertical|start"
+                android:textColor="@color/project_detail_text_gray"
+                android:text="@{subListData.listItemName}"
+                android:textStyle="bold"
+                tools:text="Panels"
+                tools:textColor="@color/project_detail_text_gray"
+                />
+            <ImageView
+                android:id="@+id/sub_list_item_arrow"
+                android:layout_width="11dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_project_detail_arrow"
+                android:scaleType="center"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:rotation="@{subListData.expanded? 90: 0}"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/bg_list_item"
+                android:layout_gravity="bottom"
+                android:visibility="@{subListData.expanded? View.INVISIBLE: View.VISIBLE}"/>
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/sub_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{subListData.expanded? View.VISIBLE: View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/item_timing_progress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sub_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    
+    
+</layout>
+    
+

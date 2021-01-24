@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="pressed_black">#A0000000</color>
+    <color name="list_item_pressed_black">#05000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+
+    <!-- Global Colors -->
+    <color name="framecad_color_primary_selected">#FFAAAAAA</color>
+    <color name="framecad_color_primary">@color/white</color>
+    <color name="framecad_color_on_primary">@color/black</color>
+
+
+
+    <!-- Projects list Colors -->
+    <color name="projects_timing_overtime">#FFF01717</color>
+    <color name="projects_timing_ontime">#FF40B818</color>
+    <color name="projects_progress_inventory">#e68200</color>
+    <color name="projects_progress_assembled">#ff9900</color>
+    <color name="projects_progress_onsite">#4b0082</color>
+    <color name="projects_progress_installed">#008000</color>
+    <color name="projects_progress_production_complete">#ffff00</color>
+    <color name="projects_progress_awaiting_rework">#3399ff</color>
+    <color name="projects_progress_awaiting_production">@android:color/transparent</color>
+    <color name="projects_progress_in_production">#0000ff</color>
+    <color name="projects_progress_in_transit">#800080</color>
+    <color name="projects_progress_gray">#E6E6E6</color>
+    <color name="projects_progress_1_to_50">#FD9743</color>
+    <color name="projects_progress_51_to_75">#BAD02B</color>
+    <color name="projects_progress_76_to_100">#47C21C</color>
+
+
+
+    <!-- Projects detail Colors -->
+    <color name="project_detail_text_gray">#9B9B9B</color>
+    <color name="project_detail_sublist_gray">#F6F6F6</color>
+
+    <!-- View update Colors -->
+    <color name="view_update_spinner_gray">#ECECEC</color>
+
+
+
+</resources>

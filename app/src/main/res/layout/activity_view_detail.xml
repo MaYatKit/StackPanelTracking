@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.framecad.plum.data.model.ItemDetailPage.ItemDetailPageType" />
+
+        <import type="com.framecad.plum.R" />
+
+        <variable
+            name="backClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="showPlanClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="vm"
+            type="com.framecad.plum.viewmodel.viewdetail.ViewDetailViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <include
+            android:id="@+id/app_bar_layout"
+            layout="@layout/common_app_bar_layout"
+            app:backClickListener="@{backClickListener}"
+            app:title="@{vm.scanItem.name}" />
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/button_layout"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/view_detail_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:background="@color/white"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_common_item_text" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+        <FrameLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-5dp"
+            android:layout_marginEnd="-5dp"
+            android:elevation="2dp"
+            android:outlineProvider="bounds"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/swipe_refresh_layout">
+
+            <TextView
+                android:id="@+id/show_plan_button"
+                android:layout_width="330dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ic_view_detail_button_background"
+                android:gravity="center"
+                android:onClick="@{showPlanClickListener}"
+                android:text="@{vm.viewDetail.itemType == ItemDetailPageType.STACK? R.string.view_detail_page_bottom_button_stack :R.string.view_detail_page_bottom_button_panel }"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+

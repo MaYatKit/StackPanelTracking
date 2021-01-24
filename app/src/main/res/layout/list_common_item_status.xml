@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+
+        <import type="com.framecad.plum.R" />
+        <variable
+            name="projectStatus"
+            type="com.framecad.plum.adapters.ProjectStatus" />
+        <variable
+            name="property"
+            type="com.framecad.plum.data.model.PropertyItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/projects_detail_item_padding_left_top"
+        android:paddingEnd="@dimen/projects_detail_item_padding_left_top">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:textSize="13sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/project_detail_text_gray"
+            android:text="@{property.name}"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="Status"
+            tools:textColor="@color/project_detail_text_gray"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+
+        <View
+            android:id="@+id/item_status_icon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="6dp"
+            app:backgroundResource="@{projectStatus.chooseIcon(property.value)}"
+            app:layout_constraintTop_toBottomOf="@+id/item_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:background="@drawable/ic_projects_status_icon_assembled"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:text="@{property.value}"
+            android:layout_marginStart="9dp"
+            app:layout_constraintTop_toTopOf="@id/item_status_icon"
+            app:layout_constraintBottom_toBottomOf="@id/item_status_icon"
+            app:layout_constraintLeft_toRightOf="@id/item_status_icon"
+            tools:text="Assembled"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_content"
+            android:layout_marginTop="@dimen/projects_detail_item_padding_bottom"
+            android:background="@drawable/bg_list_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    
+</layout>
+    
+
