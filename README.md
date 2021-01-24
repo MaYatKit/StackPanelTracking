@@ -10,4 +10,4 @@ Qr code of a Panel:<br/>
 Download APK: [APK](https://github.com/MaYatKit/StackPanelTracking/raw/main/app-dev-debug.apk)<br/>
 
 
-<img title="Basic operations" width="200" src="screenshot.gif"> 
+<img title="Basic operations" width="800" src="screenshot.gif"> 
