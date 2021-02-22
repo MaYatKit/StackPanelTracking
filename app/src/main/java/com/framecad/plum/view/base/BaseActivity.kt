@@ -1,19 +1,18 @@
 package com.framecad.plum.view.base
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.framecad.plum.R
+import com.framecad.plum.StackerWebView
 import com.framecad.plum.utils.LoadingDialogHelper
 import com.framecad.plum.utils.WarningDialogHelper
 import com.framecad.plum.view.login.LoginActivity
 import com.framecad.plum.view.login.LoginActivity.Companion.resultCodeTokenExpiry
 import com.framecad.plum.view.login.LoginActivity.Companion.sStatusExtras
 import com.framecad.plum.viewmodel.base.BaseViewModel
-import java.lang.ref.WeakReference
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -24,12 +23,20 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         subscribeUI()
+        StackerWebView.getInstance(this)
+
     }
 
     override fun onStart() {
         super.onStart()
     }
 
+
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        StackerWebView.getInstance(this).releaseInstance()
+    }
 
     fun startLoad() {
         if (mLoadingDialog == null) {

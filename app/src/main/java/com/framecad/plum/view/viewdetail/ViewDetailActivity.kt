@@ -8,13 +8,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.framecad.plum.R
+import com.framecad.plum.StackerWebView
 import com.framecad.plum.adapters.DetailPageListAdapter
 import com.framecad.plum.adapters.PageType
 import com.framecad.plum.data.model.ScanItem
 import com.framecad.plum.data.model.SvgItem
 import com.framecad.plum.databinding.ActivityViewDetailBinding
+import com.framecad.plum.utils.WarningDialogHelper
 import com.framecad.plum.view.base.BaseActivity
 import com.framecad.plum.view.drawing.SVGDrawingActivity
+import com.framecad.plum.view.drawing.StackDrawingActivity
 import com.framecad.plum.viewmodel.base.BaseViewModel
 import com.framecad.plum.viewmodel.viewdetail.ViewDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +26,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ViewDetailActivity : BaseActivity() {
 
-    private val adapter = DetailPageListAdapter(PageType.ITEM_DETAIL_PAGE)
+    private lateinit var adapter: DetailPageListAdapter
 
     private val viewDetailViewModel: ViewDetailViewModel by lazy {
         ViewModelProvider(this).get(ViewDetailViewModel::class.java)
@@ -38,8 +41,11 @@ class ViewDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val projectId = intent.getLongExtra(getString(R.string.project_id), 40)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_detail)
         binding.lifecycleOwner = this
+        adapter = DetailPageListAdapter(projectId, PageType.ITEM_DETAIL_PAGE)
         binding.viewDetailList.adapter = adapter
         binding.vm = viewDetailViewModel
         binding.setBackClickListener {
@@ -54,9 +60,23 @@ class ViewDetailActivity : BaseActivity() {
                 viewDetailViewModel.setViewItem(scanItem)
 
                 binding.setShowPlanClickListener {
-                    val intent = Intent(this, SVGDrawingActivity::class.java)
-                    intent.putExtra(getString(R.string.svg_drawing_page_item), SvgItem(scanItem.id, scanItem.name, SvgItem.SvgItemType.PANEL))
-                    startActivity(intent)
+                    val itemType = when (scanItem.itemType){
+                        ScanItem.ScanItemType.PANEL -> SvgItem.SvgItemType.PANEL
+                        ScanItem.ScanItemType.PLAN -> SvgItem.SvgItemType.PLAN
+                        ScanItem.ScanItemType.STACK -> SvgItem.SvgItemType.STACK
+                        else -> SvgItem.SvgItemType.UNKNOWN
+                    }
+                    val intent = when(itemType) {
+                        SvgItem.SvgItemType.STACK -> Intent(this, StackDrawingActivity::class.java)
+                        else -> Intent(this, SVGDrawingActivity::class.java)
+                    }
+                    intent.putExtra(getString(R.string.svg_drawing_page_item), SvgItem(projectId, scanItem.id, scanItem.name, itemType))
+
+                    if (StackerWebView.getInstance(this).is3dRenderingNotSupported && itemType == SvgItem.SvgItemType.STACK) {
+                        WarningDialogHelper.create(this, getString(R.string.svg_drawing_unsupported_msg))
+                    } else {
+                        startActivity(intent)
+                    }
                 }
             }
     }

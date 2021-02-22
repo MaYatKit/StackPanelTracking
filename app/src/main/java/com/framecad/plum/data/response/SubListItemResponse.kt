@@ -1,6 +1,7 @@
 package com.framecad.plum.data.response
 
 import android.os.Parcelable
+import android.util.Log
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -16,10 +17,10 @@ data class SubListItemResponse(
     var name: String,
 
     @field:SerializedName("status")
-    var status: String,
+    var status: String?,
 
     @field:SerializedName("item_type")
-    var itemType: String,
+    var itemType: String?,
 
     @field:SerializedName("properties")
     val properties: List<PropertyResponse>?,

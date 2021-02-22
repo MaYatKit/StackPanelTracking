@@ -6,14 +6,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ProjectDetailResponse(
-    @field:SerializedName("id") val id: String,
-    @field:SerializedName("name") val name: String,
-    @field:SerializedName("percentage") val percentage: String,
-    @field:SerializedName("item_type") val itemType: String,
-    @field:SerializedName("status") val status: String,
-    @field:SerializedName("timing") val timing: String,
-    @field:SerializedName("properties") val properties: List<PropertyResponse>,
-    @field:SerializedName("panels") val panels: List<SubListItemResponse>,
-    @field:SerializedName("stacks") val stacks: List<SubListItemResponse>,
-    @field:SerializedName("plans") val plans: List<SubListItemResponse>,
+    @field:SerializedName("id") var id: String,
+    @field:SerializedName("name") var name: String,
+    @field:SerializedName("percentage") var percentage: String?,
+    @field:SerializedName("item_type") var itemType: String?,
+    @field:SerializedName("status") var status: String?,
+    @field:SerializedName("timing") var timing: String?,
+    @field:SerializedName("properties") var properties: List<PropertyResponse>,
+    @field:SerializedName("panels") var panels: List<SubListItemResponse>,
+    @field:SerializedName("stacks") var stacks: List<SubListItemResponse>,
+    @field:SerializedName("plans") var plans: List<SubListItemResponse>,
 ): Parcelable

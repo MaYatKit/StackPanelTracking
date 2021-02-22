@@ -61,11 +61,29 @@ class PreferenceUtils @Inject constructor(@ApplicationContext val context: Conte
         return sharedPreferences.getString(prefKey, null)
     }
 
-    fun setUserName(userName: String) {
-        val prefKey = context.getString(R.string.pref_key_user_name)
+    fun setAccountId(userName: String) {
+        val prefKey = context.getString(R.string.pref_key_account_id)
         val sharedPreferences = context.getSharedPreferences(
             getDefaultSharedPreferencesName(context),
             getDefaultSharedPreferencesMode()
+        )
+        sharedPreferences.edit().putString(prefKey, userName).apply()
+    }
+
+    fun getAccountId(): String? {
+        val prefKey = context.getString(R.string.pref_key_account_id)
+        val sharedPreferences = context.getSharedPreferences(
+                getDefaultSharedPreferencesName(context),
+                getDefaultSharedPreferencesMode()
+        )
+        return sharedPreferences.getString(prefKey, null)
+    }
+
+    fun setUserName(userName: String) {
+        val prefKey = context.getString(R.string.pref_key_user_name)
+        val sharedPreferences = context.getSharedPreferences(
+                getDefaultSharedPreferencesName(context),
+                getDefaultSharedPreferencesMode()
         )
         sharedPreferences.edit().putString(prefKey, userName).apply()
     }

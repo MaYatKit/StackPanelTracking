@@ -2,11 +2,13 @@ package com.framecad.plum.view.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.framecad.plum.StackerWebView
 import com.framecad.plum.R
 import com.framecad.plum.databinding.ActivityMainBinding
 import com.framecad.plum.view.base.BaseActivity
@@ -16,7 +18,6 @@ import com.framecad.plum.view.login.LoginActivity.Companion.resultCodeLogoutSucc
 import com.framecad.plum.view.login.LoginActivity.Companion.resultCodePressBack
 import com.framecad.plum.view.project.ProjectsFragment
 import com.framecad.plum.view.project.ProjectsFragmentDirections
-import com.framecad.plum.view.projectdetail.ProjectDetailActivity
 import com.framecad.plum.view.qrcode.QrCodeFragment
 import com.framecad.plum.view.qrcode.QrCodeFragmentDirections
 import com.framecad.plum.viewmodel.base.BaseViewModel
@@ -46,6 +47,11 @@ class HomeActivity : BaseActivity() {
         binding.lifecycleOwner = this
         initView(savedInstanceState)
         subscribeUI()
+        val context = this
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

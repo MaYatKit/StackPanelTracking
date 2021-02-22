@@ -62,6 +62,13 @@ class ForgotPasswordActivity : BaseActivity() {
             }
         })
 
+        forgotPasswordViewModel.invalidEmail.observe(this, {
+            stopLoad()
+            if (it) {
+                WarningDialogHelper.create(this, resources.getString(R.string.forgot_invalid_email))
+            }
+        })
+
     }
 
 

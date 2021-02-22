@@ -43,6 +43,7 @@ class SVGDrawingViewModel @ViewModelInject constructor(
         }
     }
 
+
     fun setViewItem(item: SvgItem) {
         savedStateHandle[scanItemText] = item
     }
@@ -62,7 +63,7 @@ class SVGDrawingViewModel @ViewModelInject constructor(
                 }
 
             response?.let { res ->
-                handleResponse<ResponseBody>(res) {
+                handleResponse(res) {
                     res.body()?.let {
                         savedStateHandle[svgStringText] = it.string()
                     }

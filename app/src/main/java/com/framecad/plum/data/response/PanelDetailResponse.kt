@@ -18,7 +18,7 @@ data class PanelDetailResponse(
     var itemType: ItemDetailPage.ItemDetailPageType,
 
     @field:SerializedName("plan_url")
-    var planUrl: String,
+    var planUrl: String?,
 
     @field:SerializedName("properties")
     var properties: List<PropertyResponse>,
@@ -39,7 +39,7 @@ data class PanelDetailResponse(
     }
 
     override fun getDetailPlanUrl(): String {
-        return planUrl
+        return planUrl?:""
     }
 
     override fun getDetailProperties(): List<PropertyResponse> {

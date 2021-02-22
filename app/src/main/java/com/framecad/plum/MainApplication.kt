@@ -11,4 +11,16 @@ class MainApplication: Application(), CameraXConfig.Provider {
     override fun getCameraXConfig(): CameraXConfig {
         return Camera2Config.defaultConfig()
     }
+
+
+    override fun onCreate() {
+        super.onCreate()
+        StackerWebView.getInstance(this)
+    }
+
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+    }
+
 }

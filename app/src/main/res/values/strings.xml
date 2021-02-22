@@ -12,6 +12,7 @@
     <string name="logout_success">Logout successful, please login again.</string>
     <string name="logout_fail">Logout failed, go back to login page anyway.</string>
     <string name="login_expiry">Login expires, please login again.</string>
+    <string name="js_error">Stack renderer initialisation error, please try again later.</string>
 
 
     <!-- Qr code page -->
@@ -89,12 +90,14 @@
     <string name="prompt_forgot">Email Address</string>
     <string name="pref_key_access_token" translatable="false">access_token</string>
     <string name="pref_key_user_name" translatable="false">user_name</string>
+    <string name="pref_key_account_id" translatable="false">account_id</string>
     <string name="kick_out_text">Login info became invalid, please login again.</string>
     <string name="login_fail">Username or password is invalid, please try again.</string>
 
     <!-- Forgot password page -->
     <string name="forgot_success">Please check your email to reset your password.</string>
     <string name="forgot_fail">Failed to send reset link, please try again.</string>
+    <string name="forgot_invalid_email">Please enter a valid email.</string>
 
     <!-- Location -->
     <string name="gps_enable">GPS enable</string>
@@ -109,5 +112,6 @@
 
     <!-- Svg drawing page -->
     <string name="svg_drawing_page_item">svg_item</string>
+    <string name="svg_drawing_unsupported_msg">Sorry, your phone model doesn\'t support 3D drawing.</string>
 
 </resources>

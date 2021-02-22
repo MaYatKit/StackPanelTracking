@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.framecad.plum.R
+import kotlin.math.ceil
 
 
 class ProgressIndicator @JvmOverloads constructor(
@@ -47,14 +48,14 @@ class ProgressIndicator @JvmOverloads constructor(
     fun setStatusProgressInt(progress: String) {
         statusProgress = progress.split("%")[0].toFloat()
 
-        when (statusProgress) {
-            in 1f..50f -> {
+        when (ceil(statusProgress.toDouble()).toInt()) {
+            in 0 .. 50 -> {
                 progressPaint.color = ContextCompat.getColor(context, R.color.projects_progress_1_to_50)
             }
-            in 51f..75f -> {
+            in 50 .. 75 -> {
                 progressPaint.color = ContextCompat.getColor(context, R.color.projects_progress_51_to_75)
             }
-            in 76f..100f -> {
+            in 75 .. 100 -> {
                 progressPaint.color = ContextCompat.getColor(context, R.color.projects_progress_76_to_100)
             }
             else -> {
@@ -85,6 +86,7 @@ class ProgressIndicator @JvmOverloads constructor(
         canvas?.drawArc(rect, 0f, 360f, false, backgroundPaint)
         canvas?.drawArc(rect, -90f, 360 * (statusProgress / 100f), false, progressPaint)
     }
+
 
 
 }

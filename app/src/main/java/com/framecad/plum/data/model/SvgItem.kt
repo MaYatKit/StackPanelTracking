@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class SvgItem(
+    val projectId: Long,
     val id: String,
     val name: String,
     val itemType: SvgItemType
@@ -21,6 +22,7 @@ data class SvgItem(
     enum class SvgItemType(val s: String): Parcelable {
         PANEL("panel"),
         PLAN("plan"),
+        STACK("stack"),
         UNKNOWN("unknown");
 
 

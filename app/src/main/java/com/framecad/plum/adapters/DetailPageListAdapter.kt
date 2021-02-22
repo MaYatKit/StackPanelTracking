@@ -36,7 +36,7 @@ enum class PageType {
  * This adapter is for the list which in
  * the Project Detail Page or Item Detail Page
  */
-class DetailPageListAdapter(val pageType: PageType) :
+class DetailPageListAdapter(val projectId: Long, val pageType: PageType) :
     ListAdapter<ListItem, DetailPageListAdapter.BaseViewHolder>(ProjectDetailDiffCallback()) {
 
     private val expandedRotateAnimation =
@@ -156,7 +156,7 @@ class DetailPageListAdapter(val pageType: PageType) :
 
         init {
             // Use same adapter to reused list data
-            binding.subList.adapter = SubListAdapter()
+            binding.subList.adapter = SubListAdapter(projectId)
 
             if (pageType == PageType.ITEM_DETAIL_PAGE) {
                 binding.subListItemArrow.visibility = View.INVISIBLE

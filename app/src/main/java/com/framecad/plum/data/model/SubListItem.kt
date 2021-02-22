@@ -20,7 +20,7 @@ class SubListItem(
 
 
     fun getStatus(): String {
-        return subItemResponse.status
+        return subItemResponse.status?:""
     }
 
 

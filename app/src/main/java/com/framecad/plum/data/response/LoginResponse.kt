@@ -11,4 +11,7 @@ import kotlinx.android.parcel.Parcelize
 data class LoginResponse(
     @field:SerializedName("access_token")
     var accessToken: String,
+
+    @field:SerializedName("account_id")
+    var accountId: String?,
 ) : Parcelable

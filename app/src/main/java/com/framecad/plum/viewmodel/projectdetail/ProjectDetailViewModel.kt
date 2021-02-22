@@ -1,6 +1,5 @@
 package com.framecad.plum.viewmodel.projectdetail
 
-import android.util.Range
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -9,7 +8,6 @@ import androidx.lifecycle.SavedStateHandle
 import com.framecad.plum.data.model.ListItem
 import com.framecad.plum.data.ProjectsRepository
 import com.framecad.plum.data.model.ProjectDetailPage
-import com.framecad.plum.data.response.utils.ResponseUtils
 import com.framecad.plum.viewmodel.base.BaseViewModel
 
 class ProjectDetailViewModel @ViewModelInject constructor(

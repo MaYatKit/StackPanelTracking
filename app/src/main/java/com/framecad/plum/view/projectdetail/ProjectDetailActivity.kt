@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProjectDetailActivity : BaseActivity() {
 
-    private val adapter = DetailPageListAdapter(PageType.PROJECT_DETAIL_PAGE)
+    private lateinit var adapter: DetailPageListAdapter
 
     private val projectDetailViewModel: ProjectDetailViewModel by lazy {
         ViewModelProvider(this).get(ProjectDetailViewModel::class.java)
@@ -36,6 +36,11 @@ class ProjectDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        adapter = DetailPageListAdapter(
+                intent.getLongExtra(resources.getString(R.string.project_id), 40),
+                PageType.PROJECT_DETAIL_PAGE
+        )
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_project_detail)
         binding.lifecycleOwner = this

@@ -8,14 +8,6 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('/Users/jimmyma/StudioProjects/together/key_store')
-            storePassword 'kibikibi'
-            keyAlias 'kibi'
-            keyPassword 'kibikibi'
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -27,14 +19,16 @@ android {
         applicationId "com.framecad.plum"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 21
-        versionName "0.4"
+        versionCode 23
+        versionName "0.1.23"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
     }
 
     buildTypes {
+        customDebugType {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -46,11 +40,9 @@ android {
         dev {
             buildConfigField "String", "AUTHORISE_URL", "\"https://authorisetest.framecad.com/app/\""
             buildConfigField "String", "SERVER_URL", "\"https://plumtest.framecad.com/api/app/\""
+            buildConfigField "String", "STACKER_URL", "\"https://dev.d1qnnl14dhkppq.amplifyapp.com/\""
         }
-        live {
-            buildConfigField "String", "AUTHORISE_URL", "\"https://authorise.framecad.com/app/\""
-            buildConfigField "String", "SERVER_URL", "\"https://plumtest.framecad.com/api/app/\""
-        }
+
     }
 
     compileOptions {

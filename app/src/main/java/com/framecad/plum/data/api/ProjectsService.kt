@@ -21,6 +21,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 interface ProjectsService {
 
@@ -80,6 +81,9 @@ interface ProjectsService {
                 PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
             val client = OkHttpClient.Builder()
                 .cookieJar(cookieJar)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(NoInternetInterceptor(context,400, context.getString(
                     R.string.error_msg_no_internet)))
                 .addInterceptor(object : Interceptor {

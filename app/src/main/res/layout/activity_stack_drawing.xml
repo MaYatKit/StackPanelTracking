@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.framecad.plum.data.model.ItemDetailPage.ItemDetailPageType" />
+
+        <import type="com.framecad.plum.R" />
+
+        <variable
+            name="backClickListener"
+            type="android.view.View.OnClickListener" />
+
+
+        <variable
+            name="titleText"
+            type="String" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <include
+            android:id="@+id/app_bar_layout"
+            layout="@layout/common_app_bar_layout"
+            app:backClickListener="@{backClickListener}"
+            app:title="@{titleText}" />
+
+        <FrameLayout
+            android:id="@+id/container_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+            >
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+

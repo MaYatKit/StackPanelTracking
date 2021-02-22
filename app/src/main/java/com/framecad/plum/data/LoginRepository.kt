@@ -25,6 +25,9 @@ class LoginRepository @Inject constructor(private val service: LoginService,
         if (successCodes.any { it == response.code() }) {
             response.body()?.let {
                 preferenceUtils.setAccessToken(it.accessToken)
+                it.accountId?.let {accountId->
+                    preferenceUtils.setAccountId(accountId)
+                }
             }
             preferenceUtils.setUserName(loginBody.username)
             return response

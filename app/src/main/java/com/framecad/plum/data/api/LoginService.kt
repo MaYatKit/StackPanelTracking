@@ -22,6 +22,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface LoginService {
@@ -50,6 +51,9 @@ interface LoginService {
                 PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
             val client = OkHttpClient.Builder()
                 .cookieJar(cookieJar)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(NoInternetInterceptor(context,400 ,context.getString(R.string.error_msg_no_internet)))
                 .addInterceptor(object : Interceptor {
                     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {

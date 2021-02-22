@@ -40,11 +40,11 @@ import com.framecad.plum.view.viewdetail.ViewDetailActivity
 private const val PLAN_ITEM = 0
 private const val PANEL_STACK_STICK_ITEM = 1
 
-class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(ProjectDiffCallback()) {
-
+class SubListAdapter(private val projectId: Long) : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(ProjectDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             PLAN_ITEM -> PlanSublistViewHolder(
+                    projectId,
                 ListCommonItemSublistItemPlanBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -53,6 +53,7 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
             )
 
             PANEL_STACK_STICK_ITEM -> PanelOrStackSublistViewHolder(
+                    projectId,
                 ListCommonItemSublistItemBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -60,6 +61,7 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
                 )
             )
             else -> PlanSublistViewHolder(
+                    projectId,
                 ListCommonItemSublistItemPlanBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -92,6 +94,7 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
     }
 
     class PanelOrStackSublistViewHolder(
+            private val projectId: Long,
         private val binding: ListCommonItemSublistItemBinding
     ) : SubListAdapter.BaseViewHolder(binding) {
         init {
@@ -109,6 +112,10 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
                         intent.putExtra(
                             binding.root.context.getString(R.string.view_detail_page_item),
                             scanItem
+                        )
+                        intent.putExtra(
+                            binding.root.context.getString(R.string.project_id),
+                            projectId
                         )
                         view.context.startActivity(intent)
                     }
@@ -129,6 +136,7 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
     }
 
     class PlanSublistViewHolder(
+            private val projectId: Long,
         private val binding: ListCommonItemSublistItemPlanBinding
     ) : SubListAdapter.BaseViewHolder(binding) {
 
@@ -139,6 +147,7 @@ class SubListAdapter : ListAdapter<ListItem, SubListAdapter.BaseViewHolder>(Proj
                     val intent = Intent(binding.root.context, SVGDrawingActivity::class.java)
                     intent.putExtra(
                         binding.root.context.getString(R.string.svg_drawing_page_item), SvgItem(
+                            projectId,
                             item.getId(), item.getName(),
                             SvgItem.SvgItemType.PLAN
                         )
